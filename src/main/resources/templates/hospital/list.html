@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Hospitales</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h2>Lista de Hospitales</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="hospital : ${listaHospitales}">
+            <td th:text="${hospital.id}"></td>
+            <td th:text="${hospital.nombre}"></td>
+            <td th:text="${hospital.direccion}"></td>
+            <td th:text="${hospital.telefono}"></td>
+            <td>
+                <a th:href="@{'/hospital/doctores/' + ${hospital.id}}" class="btn btn-info btn-sm">
+                    Mostrar doctores
+                </a>
+                <a th:href="@{'/hospital/pacientes/' + ${hospital.id}}" class="btn btn-success btn-sm">
+                    Mostrar pacientes
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
